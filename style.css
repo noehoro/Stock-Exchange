@@ -1,1 +1,35 @@
 /* Style */
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #E5E5E5;
+    height: 100vh;
+    background: url("media/background.svg") no-repeat top 20% left 0px;
+    background-size: 96%;
+    background-size: 96%;
+  }
+  
+  body *:hover{
+    border: 1px solid green;
+  }
+  
+  .parent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .column {
+    flex-direction: column;
+  }
+
+  .container{
+      background-color: white;
+      width:80%;
+      height:80%;
+  }
