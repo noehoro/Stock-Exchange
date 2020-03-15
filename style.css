@@ -1,35 +1,68 @@
 /* Style */
 
 body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #E5E5E5;
-    height: 100vh;
-    background: url("media/background.svg") no-repeat top 20% left 0px;
-    background-size: 96%;
-    background-size: 96%;
-  }
-  
-  body *:hover{
-    border: 1px solid green;
-  }
-  
-  .parent {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .column {
-    flex-direction: column;
-  }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  height: 100vh;
+  background: url("media/background.svg") no-repeat top 20% left 0px;
+  background-size: 97%;
+  background-repeat: repeat-y;
+  min-height: 615px;
+}
 
-  .container{
-      background-color: white;
-      width:80%;
-      height:80%;
-  }
+/* body *:hover {
+  border: 1px solid green;
+} */
+
+.parent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.column {
+  flex-direction: column;
+}
+
+.container {
+  width: 80%;
+  height: 80%;
+  justify-content: start;
+}
+
+.search-bar-container {
+  width: 100%;
+  height: 15%;
+  border-radius: 50px;
+  color: #312e3a;
+}
+
+#search {
+  border: none;
+  width: 80%;
+  height: 100%;
+  background-color: transparent;
+}
+
+textarea:focus,
+input:focus {
+  outline: none;
+}
+
+.form {
+  width: 90%;
+  height: 100%;
+  font-size: 300%;
+}
+
+button {
+  height: 100%;
+  background-color: transparent;
+  font-size: 100%;
+  border: transparent;
+}
+
+button i {
+  font-size: 100%;
+}
