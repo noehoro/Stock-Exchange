@@ -25,10 +25,13 @@ function fetchResults() {
     if (response.ok) {
       response.json().then(data => {
         //Create new list
-        let list = "";
+        let list = new DocumentFragment();
         //for each element add a row
-        for (i of data) {
-          list += addRow(i);
+        for (json of data) {
+          var li = document.createElement("li");
+          li.classList.add("parent"); 
+          li.innerHTML = addRow(json);
+          list.appendChild(li);
         }
         //show the from list
         hide("spinner");
@@ -40,15 +43,15 @@ function fetchResults() {
 }
 
 //Create Take in JSON and create a row
-function addRow(i) {
-  let nasdaqLink = `https://www.nasdaq.com/market-activity/stocks/${i.symbol}`;
-  return `<li class="parent"><span class="Name">${i.name}</span><a href=${nasdaqLink} target="_blank" class="ticker">(${i.symbol})</a></li>`;
+function addRow(json) {
+  let link = `/company.html?symbol=${json.symbol}`;
+  return `<span class="Name">${json.name}</span><a href=${link} target="_blank" class="ticker">(${json.symbol})</a>`;
 }
 
 //Receive the list and print it
 function displayResults(list) {
   let results = document.getElementById("results");
-  results.innerHTML = list;
+  results.appendChild(list);
 }
 
 // When Button is clicked
