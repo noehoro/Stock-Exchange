@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Stock Exchange</title>
-    <link rel="icon" href="media/icon.png"/>
+    <link rel="icon" href="media/icon.png" />
     <!-- Bootstrap CSS -->
     <link
       rel="stylesheet"
@@ -45,22 +45,11 @@
         <!-- Search form -->
         <div class="parent form">
           <input type="text" placeholder="Search" id="search" />
-          <button><i class="fas fa-search"></i></button>
+          <button id="button"><i class="fas fa-search"></i></button>
         </div>
       </div>
       <div class="parent box results-container shadow-lg">
-        <ul class="parent column">
-          <li class="parent"><span class="Name">Tesla</span>(<span class="ticker">TSLA</span>)</li>
-          <li class="parent">2</li>
-          <li class="parent">3</li>
-          <li class="parent">4</li>
-          <li class="parent">5</li>
-          <li class="parent">6</li>
-          <li class="parent">7</li>
-          <li class="parent">8</li>
-          <li class="parent">9</li>
-          <li class="parent">10</li>
-        </ul>
+        <ul id="results" class="parent column"></ul>
       </div>
     </div>
     <script src="main.js"></script>
