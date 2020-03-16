@@ -51,7 +51,7 @@ function fetchResults() {
 
 //Create Take in JSON and create a row
 function addRow(json) {
-  let link = `/company.html?symbol=${json.symbol}`;
+  let link = `company/company.html?symbol=${json.symbol}`;
   return `<span class="Name">${json.name}</span><a href=${link} target="_blank" class="ticker">(${json.symbol})</a>`;
 }
 
