@@ -1,5 +1,9 @@
 /* Style */
 
+html body .container *{
+    overflow: hidden;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -33,7 +37,7 @@ body *:hover {
 }
 
 .search-bar-container {
-  height: 12.5%;
+  height: 0;
 }
 
 .box {
@@ -48,7 +52,22 @@ body *:hover {
 }
 
 .results-container {
-  height: 82.5%;
+  height: 0;
+}
+
+.animation-hide{
+    transition: all 0.5s linear;
+    height: 0;
+}
+
+.animation-show-results{
+    transition: all 0.5s linear;
+    height:  82.5%;
+}
+
+.animation-show-search-bar{
+    transition: all 1s linear;
+    height: 12.5%;
 }
 
 #search {
@@ -80,7 +99,7 @@ button i {
   font-size: 100%;
 }
 
-.results-container ul {
+#results-container ul {
   list-style-type: none;
   height: 100%;
   margin: 0;
@@ -89,7 +108,7 @@ button i {
   width: 100%;
 }
 
-.results-container ul li {
+#results-container ul li {
   width: 90%;
   margin: 0;
   padding: 0;

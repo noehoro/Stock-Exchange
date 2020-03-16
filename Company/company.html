@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title id="title"></title>
     <title>Stock Exchange</title>
-    <link rel="icon" href="media/icon.png" />
+    <link rel="icon" href="../media/icon.png" />
     <!-- Bootstrap CSS -->
     <link
       rel="stylesheet"
@@ -19,16 +19,16 @@
     <!-- Company Page CSS -->
     <link rel="stylesheet" href="Company.css" />
   </head>
-  <body>
-    <div class="parent container column">
-      <div class="parent box search-bar-container shadow-lg">
+  <body class="parent">
+    <div id="main" class="parent container column">
+      <div id="search-bar-container" class="parent box search-bar-container shadow-lg">
         <!-- Search form -->
         <div class="parent form">
           <input type="text" placeholder="Search Nasdaq stocks" id="search" />
           <button id="button"><i class="fas fa-search"></i></button>
         </div>
       </div>
-      <div class="parent box results-container shadow-lg">
+      <div id="results-container" class="parent box results-container shadow-lg">
         <div id="spinner" class="hide spinner-grow text-muted"></div>
         <ul id="results" class="parent column"></ul>
       </div>

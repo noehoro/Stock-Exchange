@@ -11,9 +11,21 @@ button.addEventListener("click", buttonClicked);
 searchInput.addEventListener("keyup", function(event) {
   // Number 13 is the "Enter" key on the keyboard
   if (event.keyCode === 13) {
-    // Cancel the default action, if needed
     event.preventDefault();
-    // Trigger the button element with a click
     button.click();
   }
 });
+
+//if the search is clicked, go back to the original website
+function buttonClicked(){
+    let searchInput = document.getElementById("search");
+    let input = searchInput.value;
+    location.href=`../index.html?query=${input}`;
+}
+
+//This happens when the page is loaded
+window.onload = function() {
+  document
+    .getElementById("main")
+    .classList.add("animation-main");
+};

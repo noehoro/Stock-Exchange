@@ -1,0 +1,20 @@
+body {
+  background: url("../media/backgroun2.svg") no-repeat top 20% left 0px;
+}
+
+#main{
+    height:0;
+}
+
+.animation-main{
+    transition: all 0.5s linear;
+    height:90%!important;
+}
+
+#results-container{
+    height:82.5%;
+}
+
+#search-bar-container{
+    height:12.5%;
+}
