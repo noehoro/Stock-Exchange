@@ -11,10 +11,10 @@ body {
   min-height: 615px;
   min-width: 650px;
 }
-
+/* 
 body *:hover {
   border: 1px solid green;
-}
+} */
 
 .parent {
   display: flex;

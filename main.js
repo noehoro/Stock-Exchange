@@ -41,7 +41,8 @@ function fetchResults() {
 
 //Create Take in JSON and create a row
 function addRow(i) {
-  return `<li class="parent"><span class="Name">${i.name}</span><span class="ticker">(${i.symbol})</span></li>`;
+  let nasdaqLink = `https://www.nasdaq.com/market-activity/stocks/${i.symbol}`;
+  return `<li class="parent"><span class="Name">${i.name}</span><a href=${nasdaqLink} target="_blank" class="ticker">(${i.symbol})</a></li>`;
 }
 
 //Receive the list and print it
