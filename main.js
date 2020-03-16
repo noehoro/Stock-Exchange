@@ -1,5 +1,15 @@
 // Script
+function show(tag) {
+  document.getElementById(tag).classList.remove("hide");
+}
+
+function hide(tag) {
+  document.getElementById(tag).classList.add("hide");
+}
+
 function buttonClicked() {
+  show("spinner");
+  hide("results");
   fetchResults();
 }
 
@@ -21,6 +31,8 @@ function fetchResults() {
           list += addRow(i);
         }
         //show the from list
+        hide("spinner");
+        show("results");
         displayResults(list);
       });
     }

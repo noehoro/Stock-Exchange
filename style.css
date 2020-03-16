@@ -9,6 +9,7 @@ body {
   background-size: 97%;
   background-repeat: repeat-y;
   min-height: 615px;
+  min-width: 650px;
 }
 
 body *:hover {
@@ -40,6 +41,10 @@ body *:hover {
   color: #312e3a;
   width: 100%;
   background: rgba(255, 255, 255, 0.95);
+}
+
+.hide {
+  display: none;
 }
 
 .results-container {
@@ -90,6 +95,7 @@ button i {
   padding: 0;
   height: 10%;
   justify-content: start;
+  border-bottom: 0.5px solid black;
 }
 
 .name {
