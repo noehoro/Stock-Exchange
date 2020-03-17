@@ -31,28 +31,33 @@ function buttonClicked() {
 }
 
 //insert Tag Icon and Title
-function setTag(data) {
-  document.getElementById("title").innerText = data.symbol;
-  document.getElementById("icon").setAttribute("href", data.profile.image);
+function setTag(symbol, image) {
+  document.getElementById("title").innerText = symbol;
+  document.getElementById("icon").setAttribute("href", image);
 }
 
 //insert image
-function setImage(data) {
+function setImage(image) {
   let img = document.getElementById("img");
-  img.innerHTML = `<img src=${data.profile.image} alt= '${data.profile.companyName} name' style='height:100%'>`;
+  img.innerHTML = `<img src=${image} style='height:100%'>`;
 }
 
 //insert name
-function setCompanyName(data) {
+function setCompanyName(companyName) {
   let name = document.getElementById("name");
-  name.innerHTML = data.profile.companyName;
+  name.innerHTML = companyName;
+}
+
+//insert about
+function setAbout(info) {
+  let about = document.getElementById("about");
+  about.innerHTML = info;
 }
 
 //insert stock price
-function setPrice(data) {
+function setPrice(stockPrice, changesPercentage) {
   let price = document.getElementById("price");
-  let changesPercentage = data.profile.changesPercentage;
-  price.innerHTML = `Stock price: $${data.profile.price} <span id="priceChange">${changesPercentage}</span>`;
+  price.innerHTML = `Stock price: $${stockPrice} <span id="priceChange">${changesPercentage}</span>`;
 }
 
 //See if the price change is positive or negative and set the color accordingly
@@ -78,11 +83,12 @@ function fetchResults() {
   ).then(response => {
     if (response.ok) {
       response.json().then(data => {
-        setImage(data);
-        setTag(data);
-        setCompanyName(data);
-        setPrice(data);
+        setTag(data.profile.symbol, data.profile.image);
+        setImage(data.profile.image);
+        setCompanyName(data.profile.companyName);
+        setPrice(data.profile.price, data.profile.changesPercentage);
         setPriceChangeColor(data.profile.changesPercentage);
+        setAbout(data.profile.description);
       });
     }
   });
