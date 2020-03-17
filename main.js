@@ -108,7 +108,7 @@ function fetchResults(ticker, searchInput) {
 //Create Take in data in form of JSON and create a row
 function addRow(data) {
   //links to different file
-  let link = `company/company.html?symbol=${data.symbol}`;
+  let link = `Company/company.html?symbol=${data.symbol}`;
   return `<span class="Name">${data.name}</span><a href=${link} class="ticker">(${data.symbol})</a>`;
 }
 
