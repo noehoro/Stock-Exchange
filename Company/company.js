@@ -64,10 +64,13 @@ function setPrice(stockPrice, changesPercentage) {
 function setPriceChangeColor(percent) {
   let priceChangeTag = document.getElementById("priceChange");
   if (percent[1] === "-") {
+    //make it red
     priceChangeTag.classList.add("text-danger");
   } else if (percent[1] === "+") {
+    //make it green
     priceChangeTag.classList.add("text-success");
   } else {
+    //make it grey
     priceChangeTag.classList.add("text-secondary");
   }
 }
@@ -94,10 +97,31 @@ function fetchResults() {
   });
 }
 
-
 //This happens when the page is loaded
 window.onload = function() {
   document.getElementById("main").classList.add("animation-main");
   fetchResults();
   buttonConfig();
 };
+
+var ctx = document.getElementById("myChart").getContext("2d");
+var chart = new Chart(ctx, {
+  // The type of chart we want to create
+  type: "line",
+
+  // The data for our dataset
+  data: {
+    labels: ["January", "February", "March", "April", "May", "June", "July"],
+    datasets: [
+      {
+        label: "My First dataset",
+        backgroundColor: "rgb(255, 99, 132)",
+        borderColor: "rgb(255, 99, 132)",
+        data: [0, 10, 5, 2, 20, 30, 45]
+      }
+    ]
+  },
+
+  // Configuration options go here
+  options: { maintainAspectRatio: false }
+});

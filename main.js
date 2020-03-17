@@ -83,15 +83,15 @@ function fetchResults(ticker, searchInput) {
         //checks if there are any results, otherwise returns "no results"
         if (data.length !== 0) {
           //for each element add a row, add to the document a new row
-          for (info of data) {
-            var li = document.createElement("li");
+          for (let info of data) {
+            let li = document.createElement("li");
             li.classList.add("parent");
             li.innerHTML = addRow(info);
             list.appendChild(li);
           }
         } else {
           //No Results
-          var li = document.createElement("li");
+          let li = document.createElement("li");
           li.classList.add("parent");
           li.innerHTML = "No Results";
           list.appendChild(li);

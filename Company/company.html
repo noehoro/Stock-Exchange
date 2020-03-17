@@ -52,7 +52,9 @@
           </div>
           <div class="row-4 parent">
             <div class="empty-left"></div>
-            <div id="chartContainer"></div>
+            <div id="chartContainer" style="height: 100%">
+              <canvas id="myChart"></canvas>
+            </div>
           </div>
         </div>
       </div>
@@ -80,7 +82,10 @@
       crossorigin="anonymous"
     ></script>
 
+    <!-- Chart JS -->
+    <script src="../node_modules/chart.js/dist/Chart.js"></script>
+
     <!-- Personal JS -->
-    <script src="company.js"></script>
+    <script src="./company.js"></script>
   </body>
 </html>
