@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title id="title"></title>
     <title>Stock Exchange</title>
-    <link rel="icon" href="../media/icon.png" />
+    <link rel="icon" id="icon" />
     <!-- Bootstrap CSS -->
     <link
       rel="stylesheet"
@@ -21,16 +21,31 @@
   </head>
   <body class="parent">
     <div id="main" class="parent container column">
-      <div id="search-bar-container" class="parent box search-bar-container shadow-lg">
+      <div
+        id="search-bar-container"
+        class="parent box search-bar-container shadow-lg"
+      >
         <!-- Search form -->
         <div class="parent form">
-          <input type="text" placeholder="Search Nasdaq stocks" id="search" />
+          <input type="text" placeholder="Search stocks" id="search" />
           <button id="button"><i class="fas fa-search"></i></button>
         </div>
       </div>
-      <div id="results-container" class="parent box results-container shadow-lg">
+      <div
+        id="results-container"
+        class="parent box results-container shadow-lg"
+      >
         <div id="spinner" class="hide spinner-grow text-muted"></div>
-        <ul id="results" class="parent column"></ul>
+        <div id="results" class="parent column">
+          <div class="row-1 parent">
+            <div id="img" class="parent"></div>
+            <h1 id="name"></h1>
+          </div>
+          <div class="row-2 parent">
+            <div class="empty-left"></div>
+            <h4 id="price"></h4>
+          </div>
+        </div>
       </div>
     </div>
     <!-- Bootstrap JS -->
