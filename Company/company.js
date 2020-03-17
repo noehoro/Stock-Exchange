@@ -94,6 +94,7 @@ function fetchResults() {
   });
 }
 
+
 //This happens when the page is loaded
 window.onload = function() {
   document.getElementById("main").classList.add("animation-main");

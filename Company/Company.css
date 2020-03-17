@@ -2,9 +2,9 @@ body {
   background: url("../media/backgroun2.svg") no-repeat top 20% left 0px;
 }
 
-/* body .container *:hover {
+body .container *:hover {
   border: 0.5px solid green;
-} */
+}
 
 #main {
   height: 0;
@@ -39,42 +39,42 @@ body {
   width: auto;
 }
 
-#img img{
-    height: 100%;
+#img img {
+  height: 100%;
 }
 
 .row-2 {
-    width: 100%;
-    height: 10%;
-    justify-content: start;
-  }
-
-  .empty-left{
-      width: 9%;
-      height: 100%;
-  }
-
-  .row-3 {
-    width: 100%;
-    height: 25%;
-    justify-content: start;
-  }
-
-#about{
-    height: auto;
-    width: 80%;
+  width: 100%;
+  height: 10%;
+  justify-content: start;
 }
-  .row-3 .empty-right{
-      width:10%;
-      height: 100%;
-  }
 
-  .row-4{
-      height:45%;
-      width: 100%;
-      justify-content:start ;
-  }
-  .row-4 #chartContainer{
-    height: 100%;
-    width: 50%;
-  }
+.empty-left {
+  width: 9%;
+  height: 100%;
+}
+
+.row-3 {
+  width: 100%;
+  height: 25%;
+  justify-content: start;
+}
+
+#about {
+  height: auto;
+  width: 80%;
+}
+.row-3 .empty-right {
+  width: 10%;
+  height: 100%;
+}
+
+.row-4 {
+  height: 45%;
+  width: 100%;
+  justify-content: start;
+}
+.row-4 #chartContainer {
+  height: 100%;
+  width: 50%;
+}
