@@ -83,7 +83,7 @@ function fetchResults() {
   ).then(response => {
     if (response.ok) {
       response.json().then(data => {
-        setTag(data.profile.symbol, data.profile.image);
+        setTag(data.symbol, data.profile.image);
         setImage(data.profile.image);
         setCompanyName(data.profile.companyName);
         setPrice(data.profile.price, data.profile.changesPercentage);

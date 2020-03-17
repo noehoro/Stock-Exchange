@@ -2,9 +2,9 @@ body {
   background: url("../media/backgroun2.svg") no-repeat top 20% left 0px;
 }
 
-body .container *:hover {
+/* body .container *:hover {
   border: 0.5px solid green;
-}
+} */
 
 #main {
   height: 0;
@@ -30,7 +30,7 @@ body .container *:hover {
 
 .row-1 {
   width: 100%;
-  height: auto;
+  height: 20%;
   justify-content: start;
 }
 
@@ -56,15 +56,25 @@ body .container *:hover {
 
   .row-3 {
     width: 100%;
-    height: auto;
+    height: 25%;
     justify-content: start;
   }
 
-.row-3 h6{
+#about{
     height: auto;
-    width: 50%;
+    width: 80%;
 }
   .row-3 .empty-right{
-      width:41%;
+      width:10%;
       height: 100%;
+  }
+
+  .row-4{
+      height:45%;
+      width: 100%;
+      justify-content:start ;
+  }
+  .row-4 #chartContainer{
+    height: 100%;
+    width: 50%;
   }
