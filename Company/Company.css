@@ -30,7 +30,7 @@ body .container *:hover {
 
 .row-1 {
   width: 100%;
-  height: 20%;
+  height: auto;
   justify-content: start;
 }
 
@@ -56,12 +56,12 @@ body .container *:hover {
 
   .row-3 {
     width: 100%;
-    height: 25%;
+    height: auto;
     justify-content: start;
   }
 
 .row-3 h6{
-    height: 100%;
+    height: auto;
     width: 50%;
 }
   .row-3 .empty-right{
