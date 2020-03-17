@@ -74,7 +74,7 @@ function fetchResults(ticker, searchInput) {
   addState(ticker);
   //fetch Stocks from the API
   fetch(
-    `https://financialmodelingprep.com/api/v3/search?query=${ticker}&limit=10&exchange=NASDAQ`
+    `https://financialmodelingprep.com/api/v3/search?query=${ticker}&limit=10`
   ).then(response => {
     if (response.ok) {
       response.json().then(data => {
