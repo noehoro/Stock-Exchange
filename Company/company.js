@@ -16,6 +16,7 @@ function buttonConfig() {
 //Animation when the page loads
 function startUpAnimation() {
   document.getElementById("main").classList.add("animation-main");
+  show("spinner");
 }
 
 //if the search is clicked, go back to the original website
@@ -100,6 +101,19 @@ function fetchResults() {
   });
 }
 
+function fetchPrices() {
+  //Get Params
+  let urlParams = new URLSearchParams(window.location.search);
+  let ticker = urlParams.get("symbol");
+  fetch(`https://financialmodelingprep.com/api/v3/historical-price-full/${ticker}?serietype=line`).then(response => {
+    response.json().then(data => {
+      console.log(data);
+      hide("spinner");
+      loadChart();
+    })
+  })
+}
+
 //load the chart
 function loadChart() {
   var ctx = document.getElementById("myChart").getContext("2d");
@@ -129,6 +143,6 @@ function loadChart() {
 window.onload = function() {
   startUpAnimation();
   fetchResults();
+  fetchPrices();
   buttonConfig();
-  loadChart();
 };

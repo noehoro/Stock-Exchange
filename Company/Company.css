@@ -36,6 +36,10 @@ body .container *:hover {
   justify-content: start;
 }
 
+#spinner{
+  margin-left: 20%;
+}
+
 #img {
   height: auto;
   width: auto;
