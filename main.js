@@ -38,7 +38,7 @@ function buttonConfig() {
 
 //Edit the link so that is matches the search
 function addState(query) {
-  window.history.pushState("", "", `/index.html?query=${query}`);
+  window.history.pushState("", "", `./index.html?query=${query}`);
 }
 
 //Do this when the button is clicked
