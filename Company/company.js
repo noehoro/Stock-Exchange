@@ -2,6 +2,7 @@
 
 //button configuration
 function buttonConfig() {
+  //search button
   let button = document.getElementById("button");
   let searchInput = document.getElementById("search");
   button.addEventListener("click", buttonClicked);
@@ -11,6 +12,38 @@ function buttonConfig() {
       buttonClicked();
     }
   });
+  let buttons = ["btn1", "btn2", "btn3", "btn4"];
+  for (let btn of buttons) {
+    btn = document.getElementById(btn);
+    btn.addEventListener("click", function() {
+      changeTimeFrame(btn);
+    });
+  }
+}
+
+function changeTimeFrame(btn) {
+  let timeFrame;
+  let date = getDate();
+  if (btn === btn1) {
+    timeFrame = date - 50000;
+  } else if (btn === btn2) {
+    timeFrame = date - 10000;
+  } else if (btn === btn3) {
+    timeFrame = date - 300;
+  } else if (btn === btn4) {
+    timeFrame = date - 100;
+  }
+  fetchPrices(timeFrame);
+}
+
+function getDate() {
+  var today = new Date();
+  var day = String(today.getDate()).padStart(2, "0");
+  var month = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+  var year = today.getFullYear();
+  today = `${year}-${month}-${day}`;
+  today = dateToNumber(today);
+  return today;
 }
 
 //Animation when the page loads
@@ -71,15 +104,13 @@ function setPriceChangeColor(percent) {
   }
 }
 
-
-function getParams(pram){
+function getParams(pram) {
   let urlParams = new URLSearchParams(window.location.search);
   return urlParams.get(pram);
 }
 //fetch the results from API
 function fetchResults() {
   let ticker = getParams("symbol");
-  console.log(ticker);
   //fetch Stocks from the API
   fetch(
     `https://financialmodelingprep.com/api/v3/company/profile/${ticker}`
@@ -105,14 +136,14 @@ function fetchResults() {
   });
 }
 
-function fetchPrices() {
+function fetchPrices(timeFrame) {
   let ticker = getParams("symbol");
   fetch(
     `https://financialmodelingprep.com/api/v3/historical-price-full/${ticker}?serietype=line`
   ).then(response => {
     response.json().then(data => {
       hide("spinner");
-      let prices = getPrices(data.historical);
+      let prices = getPrices(data.historical, timeFrame);
       loadChart(prices);
     });
   });
@@ -133,8 +164,8 @@ function dateToNumber(date) {
 }
 
 //Takes in data, looks at object's dates, and gives back object elements labeled after the date
-function getPrices(prices) {
-  let lastYear = prices.filter(json => dateToNumber(json.date) > 20100303);
+function getPrices(prices, timeFrame) {
+  let lastYear = prices.filter(json => dateToNumber(json.date) > timeFrame);
   return lastYear;
 }
 
@@ -144,10 +175,10 @@ function loadChart(prices) {
   let labels = [];
   let data = [];
   for (let element of prices) {
-    labels.push(element.date);
-    data.push(element.close);
+    let {date, close} = element;
+    labels.push(date);
+    data.push(close);
   }
-  console.log(prices);
   var chart = new Chart(ctx, {
     // The type of chart we want to create
     type: "line",
@@ -181,6 +212,6 @@ function loadChart(prices) {
 window.onload = function() {
   startUpAnimation();
   fetchResults();
-  fetchPrices();
+  fetchPrices(20190318);
   buttonConfig();
 };

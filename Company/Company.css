@@ -2,7 +2,6 @@ body {
   background: url("../media/backgroun2.svg") no-repeat top 20% left 0px;
 }
 
-
 #main {
   height: 0;
 }
@@ -76,8 +75,24 @@ body {
   height: 45%;
   width: 100%;
   justify-content: start;
+  align-items: flex-start;
 }
 .row-4 #chartContainer {
   margin: 0;
   padding: 0;
+  height: 100%
 }
+
+.row-4 .buttons-container{
+  height: 80%;
+  width: 15%;
+  justify-content: space-evenly;
+}
+
+.row-4 .buttons-container .btn-container{
+  width: 90%;
+  height: 20%;
+  border-radius: 50px;
+  background-color: white;
+}
+
