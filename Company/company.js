@@ -107,11 +107,28 @@ function fetchPrices() {
   let ticker = urlParams.get("symbol");
   fetch(`https://financialmodelingprep.com/api/v3/historical-price-full/${ticker}?serietype=line`).then(response => {
     response.json().then(data => {
-      console.log(data);
       hide("spinner");
       loadChart();
     })
   })
+}
+
+function dateToNumber(date){
+  let number = date.match(/\d+/g).map(Number);
+  for (let i = 0; i < number.length;i++){
+    number[i] = `${number[i]}`;
+    if(number[i].length === 1){
+      number[i] = `0${number[i]}`
+    }
+  }
+  number = number.join("");
+  number = parseInt(number,10);
+  return number;
+}
+
+function getPrices(prices){
+  let lastYear = prices.filter(json => dateToNumber(json.date) > 20200218)
+  return lastYear;
 }
 
 //load the chart
