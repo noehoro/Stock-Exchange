@@ -17,6 +17,8 @@ body .container *:hover {
 
 #results-container {
   height: 82.5%;
+  /* because bootstrap container has a default */
+  max-width: none;
 }
 
 #search-bar-container {
@@ -75,6 +77,6 @@ body .container *:hover {
   justify-content: start;
 }
 .row-4 #chartContainer {
-  height: 100%;
-  width: 50%;
+  margin: 0;
+  padding: 0;
 }

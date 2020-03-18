@@ -1,6 +1,6 @@
 /* Style */
 
-html body .container *{
+html body .main *{
     overflow: hidden;
 }
 
@@ -15,10 +15,6 @@ body {
   min-height: 615px;
   min-width: 650px;
 }
-/* 
-body *:hover {
-  border: 1px solid green;
-} */
 
 .parent {
   display: flex;
@@ -30,7 +26,7 @@ body *:hover {
   flex-direction: column;
 }
 
-.container {
+.main {
   width: 80%;
   height: 90%;
   justify-content: space-evenly;

@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="Company.css" />
   </head>
   <body class="parent">
-    <div id="main" class="parent container column">
+    <div id="main" class="parent main column">
       <div
         id="search-bar-container"
         class="parent box search-bar-container shadow-lg"
@@ -32,7 +32,7 @@
       </div>
       <div
         id="results-container"
-        class="parent box results-container shadow-lg"
+        class="parent box results-container container shadow-lg"
       >
         <div id="spinner" class="hide spinner-grow text-muted"></div>
         <div id="results" class="parent column">
@@ -50,9 +50,9 @@
             <h6 id="about"></h6>
             <div class="empty-right"></div>
           </div>
-          <div class="row-4 parent">
+          <div class="row-4 parent row">
             <div class="empty-left"></div>
-            <div id="chartContainer" style="height: 100%">
+            <div id="chartContainer" class="col-6" style="height: 100%">
               <canvas id="myChart"></canvas>
             </div>
           </div>
