@@ -96,7 +96,7 @@ function fetchResults() {
 function addRow(data) {
   let { symbol, name } = data;
   //links to different file
-  let link = `Company/company.html?symbol=${symbol}`;
+  let link = `./Company/company.html?symbol=${symbol}`;
   return `<span class="Name">${name}</span><a href=${link} class="ticker">(${symbol})</a>`;
 }
 
