@@ -71,11 +71,15 @@ function setPriceChangeColor(percent) {
   }
 }
 
+
+function getParams(pram){
+  let urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get(pram);
+}
 //fetch the results from API
 function fetchResults() {
-  //Get Params
-  let urlParams = new URLSearchParams(window.location.search);
-  let ticker = urlParams.get("symbol");
+  let ticker = getParams("symbol");
+  console.log(ticker);
   //fetch Stocks from the API
   fetch(
     `https://financialmodelingprep.com/api/v3/company/profile/${ticker}`
@@ -102,57 +106,74 @@ function fetchResults() {
 }
 
 function fetchPrices() {
-  //Get Params
-  let urlParams = new URLSearchParams(window.location.search);
-  let ticker = urlParams.get("symbol");
-  fetch(`https://financialmodelingprep.com/api/v3/historical-price-full/${ticker}?serietype=line`).then(response => {
+  let ticker = getParams("symbol");
+  fetch(
+    `https://financialmodelingprep.com/api/v3/historical-price-full/${ticker}?serietype=line`
+  ).then(response => {
     response.json().then(data => {
       hide("spinner");
-      loadChart();
-    })
-  })
+      let prices = getPrices(data.historical);
+      loadChart(prices);
+    });
+  });
 }
 
-function dateToNumber(date){
+//Transform date to number EX: 2013-03-23 => 20130323
+function dateToNumber(date) {
   let number = date.match(/\d+/g).map(Number);
-  for (let i = 0; i < number.length;i++){
+  for (let i = 0; i < number.length; i++) {
     number[i] = `${number[i]}`;
-    if(number[i].length === 1){
-      number[i] = `0${number[i]}`
+    if (number[i].length === 1) {
+      number[i] = `0${number[i]}`;
     }
   }
   number = number.join("");
-  number = parseInt(number,10);
+  number = parseInt(number, 10);
   return number;
 }
 
-function getPrices(prices){
-  let lastYear = prices.filter(json => dateToNumber(json.date) > 20200218)
+//Takes in data, looks at object's dates, and gives back object elements labeled after the date
+function getPrices(prices) {
+  let lastYear = prices.filter(json => dateToNumber(json.date) > 20100303);
   return lastYear;
 }
 
 //load the chart
-function loadChart() {
+function loadChart(prices) {
   var ctx = document.getElementById("myChart").getContext("2d");
+  let labels = [];
+  let data = [];
+  for (let element of prices) {
+    labels.push(element.date);
+    data.push(element.close);
+  }
+  console.log(prices);
   var chart = new Chart(ctx, {
     // The type of chart we want to create
     type: "line",
 
     // The data for our dataset
     data: {
-      labels: ["January", "February", "March", "April", "May", "June", "July"],
+      labels: labels,
       datasets: [
         {
           label: "Stock Value",
           backgroundColor: "rgb(255, 99, 132)",
           borderColor: "rgb(255, 99, 132)",
-          data: [0, 10, 5, 2, 20, 30, 35]
+          data: data
         }
       ]
     },
 
     // Configuration options go here
-    options: { maintainAspectRatio: false }
+    options: {
+      elements: {
+        point: {
+          radius: 0
+        }
+      },
+      maintainAspectRatio: false
+    }
   });
 }
 

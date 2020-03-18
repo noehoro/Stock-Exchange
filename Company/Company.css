@@ -2,9 +2,6 @@ body {
   background: url("../media/backgroun2.svg") no-repeat top 20% left 0px;
 }
 
-body .container *:hover {
-  border: 0.5px solid green;
-}
 
 #main {
   height: 0;
