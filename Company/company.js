@@ -13,14 +13,9 @@ function buttonConfig() {
   });
 }
 
-//shows element
-function show(tag) {
-  document.getElementById(tag).classList.remove("hide");
-}
-
-//hides element
-function hide(tag) {
-  document.getElementById(tag).classList.add("hide");
+//Animation when the page loads
+function startUpAnimation() {
+  document.getElementById("main").classList.add("animation-main");
 }
 
 //if the search is clicked, go back to the original website
@@ -86,22 +81,27 @@ function fetchResults() {
   ).then(response => {
     if (response.ok) {
       response.json().then(data => {
-        setTag(data.symbol, data.profile.image);
-        setImage(data.profile.image);
-        setCompanyName(data.profile.companyName);
-        setPrice(data.profile.price, data.profile.changesPercentage);
-        setPriceChangeColor(data.profile.changesPercentage);
-        setAbout(data.profile.description);
+        let { profile, symbol } = data;
+        let {
+          image,
+          companyName,
+          price,
+          changesPercentage,
+          description
+        } = profile;
+        setTag(symbol, image);
+        setImage(image);
+        setCompanyName(companyName);
+        setPrice(price, changesPercentage);
+        setPriceChangeColor(changesPercentage);
+        setAbout(description);
       });
     }
   });
 }
 
-//This happens when the page is loaded
-window.onload = function() {
-  document.getElementById("main").classList.add("animation-main");
-  fetchResults();
-  buttonConfig();
+//load the chart
+function loadChart() {
   var ctx = document.getElementById("myChart").getContext("2d");
   var chart = new Chart(ctx, {
     // The type of chart we want to create
@@ -112,10 +112,10 @@ window.onload = function() {
       labels: ["January", "February", "March", "April", "May", "June", "July"],
       datasets: [
         {
-          label: "My First dataset",
+          label: "Stock Value",
           backgroundColor: "rgb(255, 99, 132)",
           borderColor: "rgb(255, 99, 132)",
-          data: [0, 10, 5, 2, 20, 30, 45]
+          data: [0, 10, 5, 2, 20, 30, 35]
         }
       ]
     },
@@ -123,4 +123,12 @@ window.onload = function() {
     // Configuration options go here
     options: { maintainAspectRatio: false }
   });
+}
+
+//This happens when the page is loaded
+window.onload = function() {
+  startUpAnimation();
+  fetchResults();
+  buttonConfig();
+  loadChart();
 };

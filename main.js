@@ -1,34 +1,5 @@
 // Script
 
-// Button Configuration
-function buttonConfig(searchInput) {
-  //define button
-  let button = document.getElementById("button");
-
-  //when button is clicked
-  button.addEventListener("click", buttonClicked);
-
-  //When Enter is pressed
-  searchInput.addEventListener("keyup", function(event) {
-    let results = document.getElementById("results-container");
-    // Number 13 is the "Enter" key on the keyboard
-    if (event.keyCode === 13) {
-      // Cancel the default action, if needed
-      event.preventDefault();
-      // Trigger the button element
-      buttonClicked();
-      //If there is something typed then look for it
-    } else if (this.value.length >= 1) {
-      buttonClicked();
-      //if nothing is typed then change the url and hide the results
-    } else if (this.value.length === 0) {
-      addState("");
-      results.classList.remove("animation-show-results");
-      results.classList.add("animation-hide");
-    }
-  });
-}
-
 //receives the Params from the URL
 function getParams() {
   let urlParams = new URLSearchParams(window.location.search);
@@ -40,14 +11,29 @@ function getSearchInput() {
   return document.getElementById("search");
 }
 
-//show element
-function show(tag) {
-  document.getElementById(tag).classList.remove("hide");
-}
+// Button Configuration
+function buttonConfig() {
+  let searchInput = getSearchInput();
+  //define button
+  let button = document.getElementById("button");
 
-//hide element
-function hide(tag) {
-  document.getElementById(tag).classList.add("hide");
+  //when button is clicked
+  button.addEventListener("click", buttonClicked);
+
+  //When Enter is pressed
+  searchInput.addEventListener("keyup", function(event) {
+    let results = document.getElementById("results-container");
+    if (event.keyCode === 13) {
+      event.preventDefault();
+      buttonClicked();
+    } else if (this.value.length >= 1) {
+      buttonClicked();
+    } else if (this.value.length === 0) {
+      addState("");
+      results.classList.remove("animation-show-results");
+      results.classList.add("animation-hide");
+    }
+  });
 }
 
 //Edit the link so that is matches the search
@@ -57,17 +43,18 @@ function addState(query) {
 
 //Do this when the button is clicked
 function buttonClicked() {
-  //defines and animates the results
   let results = document.getElementById("results-container");
   results.classList.remove("animation-hide");
   results.classList.add("animation-show-results");
   hide("results");
   show("spinner");
   //Go and fetch the results
-  fetchResults(getParams(), getSearchInput());
+  fetchResults();
 }
 
-function fetchResults(ticker, searchInput) {
+function fetchResults() {
+  let ticker = getParams();
+  let searchInput = getSearchInput();
   //Get value from input
   ticker = searchInput.value;
   //so that the url updates
@@ -81,7 +68,7 @@ function fetchResults(ticker, searchInput) {
         //Create new list
         let list = document.createDocumentFragment();
         //checks if there are any results, otherwise returns "no results"
-        if (data.length !== 0) {
+        if (data.length) {
           //for each element add a row, add to the document a new row
           for (let info of data) {
             let li = document.createElement("li");
@@ -107,9 +94,10 @@ function fetchResults(ticker, searchInput) {
 
 //Create Take in data in form of JSON and create a row
 function addRow(data) {
+  let { symbol, name } = data;
   //links to different file
-  let link = `Company/company.html?symbol=${data.symbol}`;
-  return `<span class="Name">${data.name}</span><a href=${link} class="ticker">(${data.symbol})</a>`;
+  let link = `Company/company.html?symbol=${symbol}`;
+  return `<span class="Name">${name}</span><a href=${link} class="ticker">(${symbol})</a>`;
 }
 
 //Receive the list and print it
@@ -120,7 +108,9 @@ function displayResults(list) {
 }
 
 //Run at the beginning of the program, if the query ticker is empty then it runs it
-function checkTicker(ticker, searchInput) {
+function checkTicker() {
+  let ticker = getParams();
+  let searchInput = getSearchInput();
   if (ticker !== "" && ticker !== null) {
     searchInput.value = ticker;
     buttonClicked();
@@ -138,6 +128,6 @@ function searchBarAnimation() {
 //This happens when the page is loaded
 window.onload = function() {
   searchBarAnimation();
-  buttonConfig(getSearchInput());
-  checkTicker(getParams(), getSearchInput());
+  buttonConfig();
+  checkTicker();
 };

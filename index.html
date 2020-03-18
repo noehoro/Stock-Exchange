@@ -18,18 +18,22 @@
   </head>
   <body class="parent">
     <div class="parent main column">
-      <div id="search-bar-container" class="parent box search-bar-container shadow-lg">
+      <div
+        id="search-bar-container"
+        class="parent box search-bar-container shadow-lg"
+      >
         <!-- Search form -->
         <div class="parent form">
           <input type="text" placeholder="Search stocks" id="search" />
           <button id="button"><i class="fas fa-search"></i></button>
         </div>
       </div>
-      <div id="results-container" class="results-container parent box shadow-lg">
+      <div
+        id="results-container"
+        class="results-container parent box shadow-lg"
+      >
         <div id="spinner" class="hide spinner-grow text-muted"></div>
-        <ul id="results" class="parent column">
-            
-        </ul>
+        <ul id="results" class="parent column"></ul>
       </div>
     </div>
 
@@ -55,6 +59,9 @@
       src="https://kit.fontawesome.com/84f7bf6831.js"
       crossorigin="anonymous"
     ></script>
+
+    <!-- Shared JS -->
+    <script src="./shared.js"></script>
 
     <!-- Personal JS -->
     <script src="main.js"></script>
