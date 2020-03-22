@@ -1,11 +1,5 @@
 // Script
 
-//receives the Params from the URL
-function getParams() {
-  let urlParams = new URLSearchParams(window.location.search);
-  return urlParams.get("query");
-}
-
 //returns the search tag
 function getSearchInput() {
   return document.getElementById("search");
@@ -53,7 +47,7 @@ function buttonClicked() {
 }
 
 function fetchResults() {
-  let ticker = getParams();
+  let ticker = getParams("query");
   let searchInput = getSearchInput();
   //Get value from input
   ticker = searchInput.value;
@@ -87,9 +81,30 @@ function fetchResults() {
         hide("spinner");
         show("results");
         displayResults(list);
+        fetchImages(data);
       });
     }
   });
+}
+
+function fetchImages(data) {
+  let urls = [];
+  for (let info of data) {
+    urls.push(
+      `https://financialmodelingprep.com/api/v3/company/profile/${info.symbol}`
+    );
+  }
+  Promise.all(urls.map(url => fetch(url).then(resp => resp.json()))).then(
+    data => {
+      for (let element of data) {
+        let imgDiv = document.getElementById(element.symbol);
+        let percentSpan = document.getElementById(`${element.symbol}change`);
+        imgDiv.innerHTML = `<img src='${element.profile.image}' alt='${element.symbol}'s logo' class='logo-image'>`;
+        percentSpan.innerHTML = element.profile.changesPercentage;
+        setPriceChangeColor(element.profile.changesPercentage,`${element.symbol}change`)
+      }
+    }
+  );
 }
 
 //Create Take in data in form of JSON and create a row
@@ -97,7 +112,9 @@ function addRow(data) {
   let { symbol, name } = data;
   //links to different file
   let link = `./Company/company.html?symbol=${symbol}`;
-  return `<span class="Name">${name}</span><a href=${link} class="ticker">(${symbol})</a>`;
+  let spinnerDiv = '<div class="spinner-grow text-muted"></div>';
+  let html = `<a href=${link} class="parent list-links noLink"><div id= "${symbol}" class= "logos parent">${spinnerDiv}</div><span class="ticker">${name} (${symbol})</span> <span id="${symbol}change" class="percentageChange"></span></a>`;
+  return html;
 }
 
 //Receive the list and print it
@@ -109,7 +126,7 @@ function displayResults(list) {
 
 //Run at the beginning of the program, if the query ticker is empty then it runs it
 function checkTicker() {
-  let ticker = getParams();
+  let ticker = getParams("query");
   let searchInput = getSearchInput();
   if (ticker !== "" && ticker !== null) {
     searchInput.value = ticker;

@@ -19,6 +19,8 @@ function buttonConfig() {
       changeTimeFrame(btn);
     });
   }
+  //when the screen loads, set the graph to 1 year
+  changeTimeFrame(document.getElementById(buttons[1]));
 }
 
 function changeTimeFrame(btn) {
@@ -89,25 +91,6 @@ function setPrice(stockPrice, changesPercentage) {
   price.innerHTML = `Stock price: $${stockPrice} <span id="priceChange">${changesPercentage}</span>`;
 }
 
-//See if the price change is positive or negative and set the color accordingly
-function setPriceChangeColor(percent) {
-  let priceChangeTag = document.getElementById("priceChange");
-  if (percent[1] === "-") {
-    //make it red
-    priceChangeTag.classList.add("text-danger");
-  } else if (percent[1] === "+") {
-    //make it green
-    priceChangeTag.classList.add("text-success");
-  } else {
-    //make it grey
-    priceChangeTag.classList.add("text-secondary");
-  }
-}
-
-function getParams(pram) {
-  let urlParams = new URLSearchParams(window.location.search);
-  return urlParams.get(pram);
-}
 //fetch the results from API
 function fetchResults() {
   let ticker = getParams("symbol");
@@ -129,7 +112,7 @@ function fetchResults() {
         setImage(image);
         setCompanyName(companyName);
         setPrice(price, changesPercentage);
-        setPriceChangeColor(changesPercentage);
+        setPriceChangeColor(changesPercentage, "priceChange");
         setAbout(description);
       });
     }
@@ -212,6 +195,5 @@ function loadChart(prices) {
 window.onload = function() {
   startUpAnimation();
   fetchResults();
-  fetchPrices(20190318);
   buttonConfig();
 };

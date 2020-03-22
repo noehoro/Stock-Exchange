@@ -28,7 +28,7 @@ body {
 
 .row-1 {
   width: 100%;
-  height: 20%;
+  height: auto;
   justify-content: start;
 }
 
@@ -51,6 +51,10 @@ body {
   justify-content: start;
 }
 
+.row-2 h4{
+  font-size: 3vh;
+}
+
 .empty-left {
   width: 9%;
   height: 100%;
@@ -62,9 +66,13 @@ body {
   justify-content: start;
 }
 
+.row-3 h6{
+  font-size: 1.75vh;
+}
+
 #about {
   height: auto;
-  width: 80%;
+  width: 90%;
 }
 .row-3 .empty-right {
   width: 10%;
@@ -80,13 +88,14 @@ body {
 .row-4 #chartContainer {
   margin: 0;
   padding: 0;
-  height: 100%
+  height: 100%;
 }
 
 .row-4 .buttons-container{
   height: 80%;
   width: 15%;
   justify-content: space-evenly;
+  font-size: 1.6vw;
 }
 
 .row-4 .buttons-container .btn-container{
@@ -95,4 +104,21 @@ body {
   border-radius: 50px;
   background-color: white;
 }
-
+@media screen and (max-width: 465px) {
+  .row-1 h1{
+    font-size:3vh;
+  }
+  
+  .row-2 h4{
+    font-size: 2vh;
+  }
+  
+  .row-3 h6{
+      font-size: 1.75vh;
+  }
+}
+@media screen and (max-width: 320px) {
+  .row-3 h6{
+      font-size: 1.25vh;
+  }
+}

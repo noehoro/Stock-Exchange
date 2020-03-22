@@ -12,8 +12,7 @@ body {
   background: url("media/background.svg") no-repeat top 20% left 0px;
   background-size: 97%;
   background-repeat: repeat-y;
-  min-height: 615px;
-  min-width: 650px;
+  min-height: 625px;
 }
 
 .parent {
@@ -51,19 +50,19 @@ body {
   height: 0;
 }
 
-.animation-hide{
-    transition: all 0.5s linear;
-    height: 0;
+.animation-hide {
+  transition: all 0.5s linear;
+  height: 0;
 }
 
-.animation-show-results{
-    transition: all 0.5s linear;
-    height:  82.5%;
+.animation-show-results {
+  transition: all 0.5s linear;
+  height: 82.5%;
 }
 
-.animation-show-search-bar{
-    transition: all 1s linear;
-    height: 12.5%;
+.animation-show-search-bar {
+  transition: all 1s linear;
+  height: 12.5%;
 }
 
 #search {
@@ -104,6 +103,21 @@ button i {
   width: 100%;
 }
 
+.list-links{
+  width:100%;
+  justify-content: left;
+}
+
+.noLink{
+  text-decoration: none;
+  color:black;
+}
+
+.noLink:hover{
+  color:black;
+  text-decoration: none;
+}
+
 #results-container ul li {
   width: 90%;
   margin: 0;
@@ -113,6 +127,34 @@ button i {
   border-bottom: 0.5px solid black;
 }
 
+#results-container ul li:hover{
+  background-color: rgba(241, 241, 241, 0.95);
+}
+
 .ticker {
   margin-left: 3px;
+}
+
+.logos {
+  width: 10%;
+  height: 100%;
+}
+
+.logo-image {
+  width: 50%;
+}
+
+.percentageChange {
+  margin-left: 1%;
+}
+
+@media screen and (max-width: 575px) {
+  .main {
+    width: 90%;
+  }
+}
+@media screen and (max-width: 500px) {
+  .main {
+    width: 95%;
+  }
 }
