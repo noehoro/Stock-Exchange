@@ -13,6 +13,9 @@ body {
   background-size: 97%;
   background-repeat: repeat-y;
   min-height: 625px;
+  height: 100vh;
+  width: 100vw;
+  justify-content: stretch;
 }
 
 .parent {
@@ -157,5 +160,33 @@ button i {
 @media screen and (max-width: 500px) {
   .main {
     width: 95%;
+  }
+}
+
+.stocks-slideshow {
+  height: auto;
+  margin: 0;
+  overflow: hidden;
+  transform: translate3d(0, 0, 0);
+  position: absolute;
+  top:0;
+  left:0;
+}
+
+.stocks-slideshow .mover {
+  width: max-content;
+  transform: translate3d(0, 0, 0);
+  animation: moveSlideshow 200s linear infinite;
+}
+
+.liveTicker {
+  margin-left: 20px;
+  font-size: x-large;
+  color: black;
+}
+
+@keyframes moveSlideshow {
+  100% {
+    transform: translateX(-66.6666%);
   }
 }

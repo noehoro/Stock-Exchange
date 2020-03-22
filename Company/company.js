@@ -95,41 +95,43 @@ function setPrice(stockPrice, changesPercentage) {
 function fetchResults() {
   let ticker = getParams("symbol");
   //fetch Stocks from the API
-  fetch(
-    `https://financialmodelingprep.com/api/v3/company/profile/${ticker}`
-  ).then(response => {
-    if (response.ok) {
-      response.json().then(data => {
-        let { profile, symbol } = data;
-        let {
-          image,
-          companyName,
-          price,
-          changesPercentage,
-          description
-        } = profile;
-        setTag(symbol, image);
-        setImage(image);
-        setCompanyName(companyName);
-        setPrice(price, changesPercentage);
-        setPriceChangeColor(changesPercentage, "priceChange");
-        setAbout(description);
-      });
-    }
-  });
+  fetch(`https://financialmodelingprep.com/api/v3/company/profile/${ticker}`)
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      }
+    })
+    .then(data => {
+      let { profile, symbol } = data;
+      let {
+        image,
+        companyName,
+        price,
+        changesPercentage,
+        description
+      } = profile;
+      setTag(symbol, image);
+      setImage(image);
+      setCompanyName(companyName);
+      setPrice(price, changesPercentage);
+      setPriceChangeColor(changesPercentage, "priceChange");
+      setAbout(description);
+    });
 }
 
 function fetchPrices(timeFrame) {
   let ticker = getParams("symbol");
   fetch(
     `https://financialmodelingprep.com/api/v3/historical-price-full/${ticker}?serietype=line`
-  ).then(response => {
-    response.json().then(data => {
+  )
+    .then(response => {
+      return response.json();
+    })
+    .then(data => {
       hide("spinner");
       let prices = getPrices(data.historical, timeFrame);
       loadChart(prices);
     });
-  });
 }
 
 //Transform date to number EX: 2013-03-23 => 20130323
@@ -158,7 +160,7 @@ function loadChart(prices) {
   let labels = [];
   let data = [];
   for (let element of prices) {
-    let {date, close} = element;
+    let { date, close } = element;
     labels.push(date);
     data.push(close);
   }

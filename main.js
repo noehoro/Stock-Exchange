@@ -56,37 +56,62 @@ function fetchResults() {
   //fetch Stocks from the API
   fetch(
     `https://financialmodelingprep.com/api/v3/search?query=${ticker}&limit=10`
-  ).then(response => {
-    if (response.ok) {
-      response.json().then(data => {
-        //Create new list
-        let list = document.createDocumentFragment();
-        //checks if there are any results, otherwise returns "no results"
-        if (data.length) {
-          //for each element add a row, add to the document a new row
-          for (let info of data) {
-            let li = document.createElement("li");
-            li.classList.add("parent");
-            li.innerHTML = addRow(info);
-            list.appendChild(li);
-          }
-        } else {
-          //No Results
+  )
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      }
+    })
+    .then(data => {
+      //Create new list
+      let list = document.createDocumentFragment();
+      //checks if there are any results, otherwise returns "no results"
+      if (data.length) {
+        //for each element add a row, add to the document a new row
+        for (let info of data) {
           let li = document.createElement("li");
           li.classList.add("parent");
-          li.innerHTML = "No Results";
+          li.innerHTML = addRow(info);
           list.appendChild(li);
         }
-        //show the resulting list
-        hide("spinner");
-        show("results");
-        displayResults(list);
-        fetchImages(data);
-      });
-    }
-  });
+      } else {
+        //No Results
+        let li = document.createElement("li");
+        li.classList.add("parent");
+        li.innerHTML = "No Results";
+        list.appendChild(li);
+      }
+      //show the resulting list
+      hide("spinner");
+      show("results");
+      displayResults(list);
+      fetchImages(data);
+    });
 }
 
+//gets and sets the live stocks
+function setLiveStocks() {
+  //how many of the stocks from the list do you want to display?
+  let numberOfStocks = 300;
+  fetch("https://financialmodelingprep.com/api/v3/company/stock/list")
+    .then(response => {
+      return response.json();
+    })
+    .then(data => {
+      let div = document.getElementById("stocks");
+      div.innerHTML = "";
+      for (let i = 0; i < numberOfStocks; i++) {
+        let { symbol, price } = data.symbolsList[i];
+        let node = document.createElement("a");
+        node.classList = "liveTicker";
+        node.href=`./Company/company.html?symbol=${symbol}`;
+        node.innerHTML = `${symbol}: <span class="text-success">${price}</span>`;
+        div.appendChild(node);
+      }
+    });
+}
+
+//fetches and displays the images when searching
 function fetchImages(data) {
   let urls = [];
   for (let info of data) {
@@ -101,7 +126,10 @@ function fetchImages(data) {
         let percentSpan = document.getElementById(`${element.symbol}change`);
         imgDiv.innerHTML = `<img src='${element.profile.image}' alt='${element.symbol}'s logo' class='logo-image'>`;
         percentSpan.innerHTML = element.profile.changesPercentage;
-        setPriceChangeColor(element.profile.changesPercentage,`${element.symbol}change`)
+        setPriceChangeColor(
+          element.profile.changesPercentage,
+          `${element.symbol}change`
+        );
       }
     }
   );
@@ -128,7 +156,7 @@ function displayResults(list) {
 function checkTicker() {
   let ticker = getParams("query");
   let searchInput = getSearchInput();
-  if (ticker !== "" && ticker !== null) {
+  if (ticker) {
     searchInput.value = ticker;
     buttonClicked();
   } else {
@@ -146,5 +174,6 @@ function searchBarAnimation() {
 window.onload = function() {
   searchBarAnimation();
   buttonConfig();
+  setLiveStocks();
   checkTicker();
 };
