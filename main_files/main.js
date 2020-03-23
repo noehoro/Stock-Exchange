@@ -65,7 +65,6 @@ function fetchResults() {
     .then(data => {
       //Create new list
       let list = document.createDocumentFragment();
-      //checks if there are any results, otherwise returns "no results"
       if (data.length) {
         //for each element add a row, add to the document a new row
         for (let info of data) {

@@ -8,15 +8,15 @@ function getParams(pram) {
 
 //show element
 function show(tag) {
-    document.getElementById(tag).classList.remove("hide");
-  }
-  
-  //hide element
-  function hide(tag) {
-    document.getElementById(tag).classList.add("hide");
-  }
+  document.getElementById(tag).classList.remove("hide");
+}
 
-  //See if the price change is positive or negative and set the color accordingly
+//hide element
+function hide(tag) {
+  document.getElementById(tag).classList.add("hide");
+}
+
+//See if the price change is positive or negative and set the color accordingly
 function setPriceChangeColor(percent, id) {
   let priceChangeTag = document.getElementById(id);
   if (percent[1] === "-") {
