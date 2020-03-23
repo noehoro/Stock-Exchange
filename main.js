@@ -86,6 +86,12 @@ function fetchResults() {
       show("results");
       displayResults(list);
       fetchImages(data);
+      let results = document.getElementsByClassName("tickerName");
+      for (let li of results) {
+        let temp = li.innerHTML;
+        temp = temp.replace(new RegExp(ticker, "ig"), (match) => `<strong>${match}</strong>`);
+        li.innerHTML = temp;
+      }
     });
 }
 
@@ -104,7 +110,7 @@ function setLiveStocks() {
         let { symbol, price } = data.symbolsList[i];
         let node = document.createElement("a");
         node.classList = "liveTicker";
-        node.href=`./Company/company.html?symbol=${symbol}`;
+        node.href = `./Company/company.html?symbol=${symbol}`;
         node.innerHTML = `${symbol}: <span class="text-success">${price}</span>`;
         div.appendChild(node);
       }
@@ -141,7 +147,7 @@ function addRow(data) {
   //links to different file
   let link = `./Company/company.html?symbol=${symbol}`;
   let spinnerDiv = '<div class="spinner-grow text-muted"></div>';
-  let html = `<a href=${link} class="parent list-links noLink"><div id= "${symbol}" class= "logos parent">${spinnerDiv}</div><span class="ticker">${name} (${symbol})</span> <span id="${symbol}change" class="percentageChange"></span></a>`;
+  let html = `<a href=${link} class="parent list-links noLink"><div id= "${symbol}" class= "logos parent">${spinnerDiv}</div><span class="ticker"><span class = "tickerName">${name}</span> (${symbol})</span> <span id="${symbol}change" class="percentageChange"></span></a>`;
   return html;
 }
 
