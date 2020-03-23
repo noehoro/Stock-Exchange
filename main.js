@@ -86,10 +86,13 @@ function fetchResults() {
       show("results");
       displayResults(list);
       fetchImages(data);
-      let results = document.getElementsByClassName("tickerName");
+      let results = document.getElementsByClassName("ticker");
       for (let li of results) {
         let temp = li.innerHTML;
-        temp = temp.replace(new RegExp(ticker, "gi"), (match) => `<strong>${match}</strong>`);
+        temp = temp.replace(
+          new RegExp(ticker, "gi"),
+          match => `<strong>${match}</strong>`
+        );
         li.innerHTML = temp;
       }
     });
@@ -147,7 +150,15 @@ function addRow(data) {
   //links to different file
   let link = `./Company/company.html?symbol=${symbol}`;
   let spinnerDiv = '<div class="spinner-grow text-muted"></div>';
-  let html = `<a href=${link} class="parent list-links noLink"><div id= "${symbol}" class= "logos parent">${spinnerDiv}</div><span class="ticker"><span class = "tickerName">${name}</span> (${symbol})</span> <span id="${symbol}change" class="percentageChange"></span></a>`;
+  let html = `<a href=${link} class="parent list-links noLink">
+                <div id= "${symbol}" class= "logos parent">
+                  ${spinnerDiv}
+                </div>
+                <span class="ticker">
+                  ${name}(${symbol})
+                </span> 
+                <span id="${symbol}change" class="percentageChange"></span>
+              </a>`;
   return html;
 }
 
