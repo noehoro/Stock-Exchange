@@ -89,7 +89,7 @@ function fetchResults() {
       let results = document.getElementsByClassName("tickerName");
       for (let li of results) {
         let temp = li.innerHTML;
-        temp = temp.replace(new RegExp(ticker, "ig"), (match) => `<strong>${match}</strong>`);
+        temp = temp.replace(new RegExp(ticker, "gi"), (match) => `<strong>${match}</strong>`);
         li.innerHTML = temp;
       }
     });
