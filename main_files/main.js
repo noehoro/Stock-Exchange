@@ -97,28 +97,6 @@ function fetchResults() {
     });
 }
 
-//gets and sets the live stocks
-function setLiveStocks() {
-  //how many of the stocks from the list do you want to display?
-  let numberOfStocks = 300;
-  fetch("https://financialmodelingprep.com/api/v3/company/stock/list")
-    .then(response => {
-      return response.json();
-    })
-    .then(data => {
-      let div = document.getElementById("stocks");
-      div.innerHTML = "";
-      for (let i = 0; i < numberOfStocks; i++) {
-        let { symbol, price } = data.symbolsList[i];
-        let node = document.createElement("a");
-        node.classList = "liveTicker";
-        node.href = `./Company/company.html?symbol=${symbol}`;
-        node.innerHTML = `${symbol}: <span class="text-success">${price}</span>`;
-        div.appendChild(node);
-      }
-    });
-}
-
 //fetches and displays the images when searching
 function fetchImages(data) {
   let urls = [];
@@ -190,6 +168,8 @@ function searchBarAnimation() {
 window.onload = function() {
   searchBarAnimation();
   buttonConfig();
-  setLiveStocks();
   checkTicker();
+  
+  const live = new liveStocks("stocks", 100);
+  live.render();
 };
