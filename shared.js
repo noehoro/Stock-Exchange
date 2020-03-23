@@ -30,3 +30,7 @@ function setPriceChangeColor(percent, id) {
     priceChangeTag.classList.add("text-secondary");
   }
 }
+
+function addState(query) {
+  window.history.pushState("", "", `./index.html?query=${query}`);
+}
