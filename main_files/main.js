@@ -169,7 +169,7 @@ window.onload = function() {
   searchBarAnimation();
   buttonConfig();
   checkTicker();
-  
+
   const live = new liveStocks("stocks", 100);
   live.render();
 };
