@@ -33,7 +33,7 @@ class liveStocks {
       const { symbol, price } = data.symbolsList[i];
       const node = document.createElement("a");
       node.classList = "liveTicker";
-      node.href = `./Company/?symbol=${symbol}`;
+      node.href = `./company/?symbol=${symbol}`;
       const symbolText = document.createTextNode(`${symbol}: `);
       node.appendChild(symbolText);
       const priceSpan = document.createElement("span");
@@ -156,7 +156,7 @@ class main extends Shared {
   addRow(data) {
     let { symbol, name } = data;
     //links to different file
-    let link = `./Company/?symbol=${symbol}`;
+    let link = `./company/?symbol=${symbol}`;
     let spinnerDiv = '<div class="spinner-grow text-muted"></div>';
     let html = `<a href=${link} class="parent list-links noLink">
                   <div id= "${symbol}" class= "logos parent">
