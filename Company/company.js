@@ -25,7 +25,6 @@ class CompanyClass extends Shared{
         timeFrame = date - 100;
         break;
     }
-    console.log(timeFrame);
     this.fetchPrices(timeFrame);
   }
 
