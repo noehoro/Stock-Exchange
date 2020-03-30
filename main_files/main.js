@@ -77,7 +77,7 @@ class main extends Shared {
     this.searchBar.searchInput.addEventListener("keyup", event => {
       const input = this.searchBar.searchInput;
       const results = document.getElementById("results-container");
-      if (event.keyCode === 13 || input.value.length >= 1) {
+      if (input.value.length >= 1) {
         event.preventDefault();
         this.buttonClicked();
       } else if (input.value.length === 0) {
