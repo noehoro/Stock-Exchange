@@ -1,0 +1,23 @@
+{
+  "name": "Stock-Exchange-Website",
+  "version": "1.0.0",
+  "description": "All the packages you need!",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "download": "npm run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/noehoro/Stock-Exchange.git"
+  },
+  "author": "Noe Horowitz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/noehoro/Stock-Exchange/issues"
+  },
+  "homepage": "https://github.com/noehoro/Stock-Exchange#readme",
+  "dependencies": {
+    "chart.js": "^2.9.3"
+  }
+}
