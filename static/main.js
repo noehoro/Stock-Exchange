@@ -180,7 +180,7 @@ class main extends Shared {
     let urls = [];
     for (let info of data) {
       urls.push(
-        `/API/image/${info.symbol}`
+        `/API/profile/${info.symbol}`
       );
     }
     Promise.all(urls.map(url => fetch(url).then(resp => resp.json()))).then(

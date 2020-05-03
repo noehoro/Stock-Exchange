@@ -6,7 +6,7 @@ from sqlalchemy import or_
 
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///tickers.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///stockInfo.db'
 db = SQLAlchemy(app)
 
 
@@ -59,13 +59,6 @@ def returnDisplay():
     return results
 
 
-@app.route("/API/image/<ticker>")
-def returnImage(ticker):
-    results = fetch(
-        f"https://financialmodelingprep.com/api/v3/company/profile/{ticker}")
-    return results
-
-
 @app.route('/data')
 def data():
     args = request.args
@@ -86,4 +79,4 @@ def search(query):
 
 
 if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0", port=3000)
+    app.run(debug=True, host="0.0.0.0", port=5000)
