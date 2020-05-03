@@ -2,7 +2,7 @@ class liveStocks {
   constructor(id, numberOfStocks) {
     this.id = id;
     this.numberOfStocks = numberOfStocks;
-    this.link = "https://financialmodelingprep.com/api/v3/company/stock/list";
+    this.link = "/API/display/";
     this.createElements();
     this.render();
   }
@@ -33,7 +33,7 @@ class liveStocks {
       const { symbol, price } = data.symbolsList[i];
       const node = document.createElement("a");
       node.classList = "liveTicker";
-      node.href = `./company/?symbol=${symbol}`;
+      node.href = `/company/${symbol}`;
       const symbolText = document.createTextNode(`${symbol}: `);
       node.appendChild(symbolText);
       const priceSpan = document.createElement("span");
@@ -111,7 +111,7 @@ class main extends Shared {
     super.addState(this.ticker);
     //fetch Stocks from the API
     fetch(
-      `https://financialmodelingprep.com/api/v3/search?query=${this.ticker}&limit=10`
+      `/API/search/${this.ticker}`
     )
       .then(response => {
         if (response.ok) {
@@ -156,7 +156,7 @@ class main extends Shared {
   addRow(data) {
     let { symbol, name } = data;
     //links to different file
-    let link = `./company/?symbol=${symbol}`;
+    let link = `/company/${symbol}`;
     let spinnerDiv = '<div class="spinner-grow text-muted"></div>';
     let html = `<a href=${link} class="parent list-links noLink">
                   <div id= "${symbol}" class= "logos parent">
@@ -180,7 +180,7 @@ class main extends Shared {
     let urls = [];
     for (let info of data) {
       urls.push(
-        `https://financialmodelingprep.com/api/v3/company/profile/${info.symbol}`
+        `/API/image/${info.symbol}`
       );
     }
     Promise.all(urls.map(url => fetch(url).then(resp => resp.json()))).then(

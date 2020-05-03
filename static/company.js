@@ -92,9 +92,8 @@ class CompanyClass extends Shared{
     price.innerHTML = `Stock price: $${stockPrice} <span id="priceChange">${changesPercentage}</span>`;
   }
   fetchResults() {
-    let ticker = super.getParams("symbol");
     //fetch Stocks from the API
-    fetch(`https://financialmodelingprep.com/api/v3/company/profile/${ticker}`)
+    fetch(`/API/profile/${ticker}`)
       .then(response => {
         if (response.ok) {
           return response.json();
@@ -118,9 +117,8 @@ class CompanyClass extends Shared{
       });
   }
   fetchPrices(timeFrame) {
-    let ticker = super.getParams("symbol");
     fetch(
-      `https://financialmodelingprep.com/api/v3/historical-price-full/${ticker}?serietype=line`
+      `/API/prices/${ticker}`
     )
       .then(response => {
         return response.json();
@@ -158,6 +156,7 @@ class CompanyClass extends Shared{
       labels.push(date);
       data.push(close);
     }
+
     var chart = new Chart(ctx, {
       // The type of chart we want to create
       type: "line",

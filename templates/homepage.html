@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Stock Exchange</title>
-    <link rel="icon" href="media/icon.png" />
+    <link rel="icon" href="{{ url_for('static', filename='icon.png') }}" />
     <!-- Bootstrap CSS -->
     <link
       rel="stylesheet"
@@ -14,13 +14,21 @@
     />
 
     <!-- Personal CSS -->
-    <link rel="stylesheet" href="./main_files/style.css" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='main.css') }}"
+    />
+    <style>
+      body {
+        background: url("{{ url_for('static', filename='background.svg') }}")
+          no-repeat top 20% left 0px;
+      }
+    </style>
   </head>
   <body class="parent column">
     <div id="liveStocksContainer"></div>
     <div class="parent main column">
-      <div id="searchBarContainer">
-      </div>
+      <div id="searchBarContainer"></div>
       <div
         id="results-container"
         class="results-container parent box shadow-lg"
@@ -53,9 +61,9 @@
     ></script>
 
     <!-- Shared JS -->
-    <script src="./shared.js"></script>
+    <script src="{{ url_for('static', filename='shared.js') }}"></script>
 
     <!-- Personal JS -->
-    <script src="./main_files/main.js"></script>
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
   </body>
 </html>

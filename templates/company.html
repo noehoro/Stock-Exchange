@@ -14,9 +14,21 @@
     />
 
     <!-- Personal CSS -->
-    <link rel="stylesheet" href="../main_files/style.css" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='main.css') }}"
+    />
     <!-- Company Page CSS -->
-    <link rel="stylesheet" href="./company.css" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='company.css') }}"
+    />
+
+    <style>
+      body {
+        background: url("{{ url_for('static', filename='company.css') }}") no-repeat top 20% left 0px;
+      }
+    </style>
   </head>
   <body class="parent">
     <div id="main" class="parent main column">
@@ -97,12 +109,16 @@
     ></script>
 
     <!-- Chart JS -->
-    <script src="../node_modules/chart.js/dist/Chart.js"></script>
+    <script src="{{ url_for('static', filename='node_modules/chart.js/dist/Chart.js') }}"></script>
 
     <!-- Shared JS -->
-    <script src="../shared.js"></script>
+    <script src="{{ url_for('static', filename='shared.js') }}"></script>
+
+    <script>
+      var ticker = "{{ ticker }}"
+    </script>
 
     <!-- Personal JS -->
-    <script src="./company.js"></script>
+    <script src="{{ url_for('static', filename='company.js') }}"></script>
   </body>
 </html>

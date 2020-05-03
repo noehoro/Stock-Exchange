@@ -10,7 +10,6 @@ body {
   padding: 0;
   box-sizing: border-box;
   height: 100vh;
-  background: url("../media/background.svg") no-repeat top 20% left 0px;
   background-size: 97%;
   background-repeat: repeat-y;
   min-height: 625px;
