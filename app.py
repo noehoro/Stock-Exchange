@@ -22,7 +22,7 @@ def test(ticker):
 
 @app.route("/API/profile/<ticker>")
 def returnProfile(ticker):
-    results = Profiles.query.filter_by(symbol = ticker).first()
+    results = Profiles.query.filter_by(symbol=ticker).first()
     return results.profile
 
 
@@ -60,7 +60,6 @@ def fetch(link):
     with urllib.urlopen(link) as url:
         s = url.read()
         return s
-
 
 
 def search(query):
