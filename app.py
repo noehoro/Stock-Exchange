@@ -7,6 +7,7 @@ from sqlalchemy import or_
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///stockInfo.db'
 db = SQLAlchemy(app)
+API_KEY = "54111a47b9dfd8e47a37fa7366d981ea"
 
 from static.database import Profiles, Tickers
 
@@ -29,7 +30,7 @@ def returnProfile(ticker):
 @app.route("/API/prices/<ticker>")
 def returnPrices(ticker):
     results = fetch(
-        f"https://financialmodelingprep.com/api/v3/historical-price-full/{ticker}?serietype=line")
+        f"https://financialmodelingprep.com/api/v3/historical-price-full/{ticker}?serietype=line&apikey={API_KEY}")
     return results
 
 
@@ -46,7 +47,7 @@ def returnSearch(ticker):
 @app.route("/API/display/")
 def returnDisplay():
     results = fetch(
-        f"https://financialmodelingprep.com/api/v3/company/stock/list")
+        f"https://financialmodelingprep.com/api/v3/company/stock/list?apikey={API_KEY}")
     return results
 
 
