@@ -7,7 +7,7 @@ from sqlalchemy import or_
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///stockInfo.db'
 db = SQLAlchemy(app)
-API_KEY = "54111a47b9dfd8e47a37fa7366d981ea"
+API_KEY = "b7cc023095e40ea516b085fc89bd5444"
 
 from static.database import Profiles, Tickers
 
